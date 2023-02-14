@@ -1,0 +1,10 @@
+ 1-what is differnect http status code and explain meaning of each of them ?
+ 
+ 2-What database is used by Prometheus?
+ 
+ 3-what is the differnece between different metrics types ( counter , gauge , histogram)
+ 
+ 4-install prometheus on your localhost or on server in any cloud provider 
+ 
+ 5-add any new target to prometheus.yaml file and apply any query on it using promql langauge 
+ 
