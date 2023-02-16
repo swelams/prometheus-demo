@@ -1,0 +1,58 @@
+sudo apt update
+
+sudo apt install mysql-server
+
+sudo systemctl status mysql
+
+sudo mysql
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'your_password_here';
+
+FLUSH PRIVILEGES;
+
+exit
+
+sudo mysql -u root -p
+
+CREATE DATABASE mysql_test;
+
+USE mysql_test;
+
+
+CREATE TABLE test_table1 (id INT, name VARCHAR(45));
+
+
+INSERT INTO test_table1 VALUES(1, 'Joe'), (2, 'Jane'), (3, 'Jack'), (4, 'Jessica');
+
+SELECT * FROM test_table1;
+
+CREATE USER 'mysqld_exporter'@'localhost' IDENTIFIED BY 'password';
+
+GRANT ALL ON test_table1 TO 'mysqld_exporter'@'localhost';
+
+FLUSH PRIVILEGES;
+
+exit
+
+export DATA_SOURCE_NAME='mysqld_exporter:password@(localhost:3306)/' 
+
+
+https://prometheus.io/download/#mysql_exporter
+
+wget https://github.com/prometheus/mysqld_exporter/releases/download/v0.14.0/mysqld_exporter-0.14.0.linux-amd64.tar.gz
+
+tar xvfz mysqld_exporter-*.*-amd64.tar.gz
+
+cd mysqld_exporter-*.*-amd64
+
+./mysqld_exporter
+
+#in another terminal 
+curl http://localhost:9104/metrics
+
+#in prometheus.yaml file 
+scrape_configs:
+- job_name: 'mysqld_exporter'
+static_configs:
+- targets: ['172.31.18.7:9104'] # private ip for your machine 
+

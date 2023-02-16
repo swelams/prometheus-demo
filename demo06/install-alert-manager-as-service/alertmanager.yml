@@ -9,6 +9,6 @@ route:
 receivers:
 - name: 'slack'
   slack_configs:
-  - channel: "#nodejs"
+  - channel: "#devops"
     send_resolved: true
-    api_url: '<SLACK API GATEWAY>'
+    api_url: 'https://hooks.slack.com/services/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'
