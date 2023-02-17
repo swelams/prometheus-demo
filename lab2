@@ -1,0 +1,30 @@
+1-How do I trigger a Prometheus alert?
+
+
+2-What is the difference between node exporter and mysql exporter ?
+
+
+3-what is the maximum retention period to save data in Prometheus and how to increase it ?
+
+
+
+4-What are the different PromQL data types available in Prometheus Expression language?
+
+
+
+5-How To calculate the average request duration over the last 5 minutes from a histogram ?
+
+
+6-What is Thanos Prometheus?
+
+
+
+7-what is promtool and how i can use it ?
+
+
+
+8-What types of Monitoring can be done via Grafana?
+
+
+
+9-Can we see different Servers CPU comparison in Grafana
