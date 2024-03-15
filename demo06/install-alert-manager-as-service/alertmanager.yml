@@ -11,4 +11,4 @@ receivers:
   slack_configs:
   - channel: "#devops"
     send_resolved: true
-    api_url: 'https://hooks.slack.com/services/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'
+    api_url: 
