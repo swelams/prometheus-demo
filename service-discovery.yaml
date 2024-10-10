@@ -4,3 +4,19 @@
        access_key: AKIA5QGMFLAX6IMJXSR5
        secret_key: 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
        port: 9100
+
+
+scrape_configs:
+  - job_name: 'ec2-prod-instances'
+    ec2_sd_configs:
+      - region: us-east-1         # Change this to your AWS region
+        access_key: YOUR_ACCESS_KEY_ID     # Optional if using instance role
+        secret_key: YOUR_SECRET_ACCESS_KEY # Optional if using instance role
+        profile: default          # Optional if using an AWS profile from a config file
+        port: 9100                # Default port for node_exporter
+
+    relabel_configs:
+      - source_labels: [__meta_ec2_tag_env]
+        regex: prod
+        action: keep
+
