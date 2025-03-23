@@ -6,5 +6,6 @@
  
  4-install prometheus on your localhost or on server in any cloud provider 
  
- 5-add any new target to prometheus.yaml file and apply any query on it using promql langauge 
- 
+ 5-add any new target to prometheus.yaml  file to monitor different server and run any query on it using promql langauge 
+
+ 6- monitor running containers on different server than prometheus one 
