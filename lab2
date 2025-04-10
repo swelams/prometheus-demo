@@ -28,3 +28,8 @@
 
 
 9-Can we see different Servers CPU comparison in Grafana
+
+
+bonus:
+
+10- make any alert on prometheus and send it to slack through alertmanager 
