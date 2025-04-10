@@ -1,0 +1,56 @@
+#Average CPU Utilization (per instance)
+avg(rate(node_cpu_seconds_total{mode!="idle"}[5m])) by (instance) * 100
+
+
+#Memory Usage Percentage
+100 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100)
+
+
+# Disk I/O Utilization (per device)
+rate(node_disk_io_time_seconds_total[5m]) * 100
+
+
+# Network Traffic (in + out, per instance)
+sum by (instance) (
+  rate(node_network_receive_bytes_total[5m]) +
+  rate(node_network_transmit_bytes_total[5m])
+)
+
+
+# Top 5 Instances by CPU Utilization
+topk(5, avg(rate(node_cpu_seconds_total{mode!="idle"}[5m])) by (instance))
+
+
+#EC2 Instance Uptime (via node_time_seconds)
+(time() - node_boot_time_seconds) by (instance)
+
+
+
+#Disk Space Usage (per mountpoint)
+(node_filesystem_size_bytes - node_filesystem_free_bytes) / node_filesystem_size_bytes * 100
+
+
+#Alert: High CPU Utilization (> 80%) for 5 min
+avg by(instance)(rate(node_cpu_seconds_total{mode!="idle"}[5m])) * 100 > 80
+
+
+#EC2 Count by Region (if using CloudWatch exporter)
+count by(region)(aws_ec2_instance_info)
+
+
+# EC2 Instance Status
+aws_ec2_instance_status{instance_state="running"}
+
+
+#Request Latency (95th percentile)
+histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le, instance))
+
+
+#Error Rate (% of 5xx responses)
+100 * (
+  sum(rate(http_requests_total{status=~"5.."}[5m])) /
+  sum(rate(http_requests_total[5m]))
+)
+
+
+
